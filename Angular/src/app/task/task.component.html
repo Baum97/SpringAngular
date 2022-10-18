@@ -1,0 +1,51 @@
+<h1>List of Tasks</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        Task Name
+      </th>
+      <th>
+        Task Comment
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Time Submitted
+      </th>
+      <th>
+        Organization
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input type="text" #inputName name = "inputName" class="inputField" id="inputName" ngModel /></td>
+      <td><input type="text" #inputComment name="inputComment" class="inputField" id="inputComment" ngModel /></td>
+      <td>Default</td>
+      <td>Current</td>
+      <td>
+        <button class="button" id="submitTask" (click)="createTask()">+Task</button>
+      </td>
+    </tr>
+    <tr *ngFor="let task of tasks">
+      <td>
+        {{ task.name }}
+      </td>
+      <td>
+        {{ task.comment }}
+      </td>
+      <td>
+        <input type="checkbox">
+      </td>
+      <td>
+        {{ task.time }}
+      </td>
+      <td>
+        <button mat-button color="warn" id="edit" class="button" (click)="edit(task.id)">Edit</button>
+        <button class="button" id="delete" (click)="delete(task.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
