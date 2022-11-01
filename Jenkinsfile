@@ -1,33 +1,23 @@
 pipeline {
-
     agent any
-      tools {
-        maven '3.8.5'
-      }
-
-    parameters {
-        string(name: 'VERSION', defaultValue: '1.0.0', description: 'Build Version')
+    tools { 
+        maven '3.8.5' 
+        jdk 'JDK 8' 
     }
-
     stages {
-        stage('Build') {
+        stage ('Initialize') {
             steps {
-                echo 'Building version ${parameters.VERSION}'
-                sh 'mvn  -e -f SpringAngular/pom.xml clean install'
-
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
             }
         }
-        stage('Test') {
+
+        stage ('Build') {
             steps {
-                echo 'Testing version ${parameters.VERSION}'
-                //sh './mvn test'
+                echo 'This is a minimal pipeline.'
             }
-            //post {
-            //    always {
-            //        junit "build/reports/tests/**/*.xml"
-            //    }
-            //    sh 'mvn clean package'
-            //}
         }
     }
 }
